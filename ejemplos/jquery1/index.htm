@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<title>Comparación de códigos entre Javascript y JQuery</title>
+
+		<meta name="author" content="Lagarto" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="../../jquery_126/jquery.js"></script>
+		<script type="text/javascript" src="funciones.js"></script>
+		<link rel="stylesheet" href="estilo.css" type="text/css" media="screen" />
+	</head>
+
+	<body>
+	
+		<div id="ajax">
+			<h2>Típica llamada con AJAX a otro archivo HTML</h2>
+			<div class="javascript"> 
+			<p> <a href="#" onclick="JAVASCRIPT_ajax(); return false;">Cargar ajax.htm mediante AJAX con Javascript </a> (<a href="javascript:toggle('pre#ajax_1_pre');">ver c&oacute;digo</a>)</p>
+			<div id="ajax_js"></div>
+			<pre id="ajax_1_pre">
+function AJAX_Crea()
+{
+	var xmlhttp=false;
+
+	try 
+	{
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} 
+	catch(e) 
+	{
+		try 
+		{
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} 
+		catch (E) 
+		{
+			xmlhttp = false;
+		}
+	}
+
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') 
+	{
+		xmlhttp = new XMLHttpRequest();
+	}
+
+	return xmlhttp;
+}
+
+
+function JAVASCRIPT_ajax()
+{
+	var contenedor = document.getElementById('ajax_js');
+
+	ajax=AJAX_Crea();	
+
+	ajax.open("GET", "ajax.htm",true);
+	ajax.onreadystatechange=function() 
+	{
+		if(ajax.readyState==4) 
+		{
+			if(ajax.status==200)
+					contenedor.innerHTML = ajax.responseText;
+		}
+	}
+	ajax.send(null);
+}			
+			</pre>			
+		</div>
+		
+		<div class="jquery"> 
+
+			<p> <a href="#" onclick="JQUERY_ajax(); return false;">Cargar ajax.htm mediante AJAX con JQuery</a> (<a href="javascript:toggle('pre#ajax_2_pre');">ver c&oacute;digo</a>)</p>
+			<div id="ajax_jquery"></div>
+			</div>
+			<pre id="ajax_2_pre">
+function JQUERY_ajax()
+{
+	$("div#ajax_jquery").load("ajax.htm");
+}			
+			</pre>			
+		</div>
+		
+		<div id="formulario">
+			<h2>Control de un formulario</h2>
+			<div class="javascript">
+				<p>Control de valor de un campo de formulario con Javascript</p>
+				<div id="">
+					<form>						
+						<input type="text" name="form_1_valor" id="form_1_valor" value="0" />
+						<input type="button" value="+" onclick="JAVASCRIPT_suma();" /> (<a href="javascript:toggle('pre#form_1_pre');">ver c&oacute;digo</a>)
+					</form>
+				</div>
+				<pre id="form_1_pre">
+function JAVASCRIPT_suma()
+{
+	var elemento = document.getElementById('form_1_valor');
+	var valor = elemento.value;
+	elemento.value = parseInt(valor)+1;
+}                
+				</pre>
+			</div>
+			<div class="jquery">
+				<p></p>
+				<div id="">
+					<form>						
+						<input type="text" name="form_2_valor" id="form_2_valor" value="0" />
+						<input type="button" value="+" onclick="JQUERY_suma();" /> (<a href="javascript:toggle('pre#form_2_pre');">ver c&oacute;digo</a>)
+					</form>				
+				</div>
+				<pre id="form_2_pre">
+function JQUERY_suma()
+{
+ 	$("input#form_2_valor").val(parseInt($("input#form_2_valor").val())+1);
+}                
+				</pre>			
+			</div>
+		</div>	
+	</body>
+</html>

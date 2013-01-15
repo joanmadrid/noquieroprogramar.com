@@ -1,0 +1,12 @@
+/*generico*/
+body{font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11px;}
+a{text-decoration:none; color:#000;}
+
+/*estructura*/
+#exterior{border:1px solid #ccc; width:600px; margin:0px auto; padding:10px;}
+	#header{height:80px;}
+		#header h1{border-bottom:4px solid #ccc; text-align:center; display:block;}
+		#header ul{list-style:none; margin:0px; padding:0px;}
+		#header li{}
+			#header li a{display:block; padding:5px; border:1px solid #ccc; float:left; margin-right:10px;}
+			#header li a:hover{background:#ccc; border:1px solid #000;}
